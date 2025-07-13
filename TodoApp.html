@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(44,62,80,0.10);
+            padding: 32px 24px 24px 24px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 24px;
+        }
+        .todo-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .todo-input input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+        .todo-input button {
+            padding: 12px 20px;
+            background: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .todo-input button:hover {
+            background: #388e3c;
+        }
+        .todo-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+        }
+        .todo-table th, .todo-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+        .todo-table th {
+            background: #f4f4f4;
+        }
+        .todo-table tr.completed td {
+            text-decoration: line-through;
+            color: #888;
+            background: #fafafa;
+        }
+        .todo-table td.actions {
+            text-align: center;
+        }
+        .todo-table button {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 4px;
+            font-size: 0.95em;
+        }
+        .todo-table .delete-btn {
+            background: #e53935;
+            color: #fff;
+        }
+        .todo-table .delete-btn:hover {
+            background: #b71c1c;
+        }
+        .todo-table .toggle-btn {
+            background: #1976d2;
+            color: #fff;
+        }
+        .todo-table .toggle-btn:hover {
+            background: #0d47a1;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .clear-btn {
+            background: #ffb300;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .clear-btn:hover {
+            background: #ff6f00;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 16px 4px 12px 4px;
+            }
+            .todo-input input[type="text"] {
+                font-size: 0.95em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Todo List App</h1>
+        <div class="todo-input">
+            <input type="text" id="task-input" placeholder="Add a new task...">
+            <button id="add-task">Add</button>
+        </div>
+        <table class="todo-table">
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Created</th>
+                    <th>Status</th>
+                    <th class="actions">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="task-table-body">
+                <!-- Tasks will be rendered here -->
+            </tbody>
+        </table>
+        <div class="footer">
+            <span id="task-count">0 tasks remaining</span>
+            <button class="clear-btn" id="clear-completed">Clear Completed</button>
+        </div>
+    </div>
+    <script>
+        class TodoApp {
+            constructor() {
+                this.tasks = [];
+                this.loadTasks();
+                this.render();
+                document.getElementById('add-task').addEventListener('click', () => this.addTask());
+                document.getElementById('clear-completed').addEventListener('click', () => this.clearCompleted());
+                document.getElementById('task-input').addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') this.addTask();
+                });
+            }
+            addTask() {
+                const input = document.getElementById('task-input');
+                const text = input.value.trim();
+                if (text) {
+                    this.tasks.push({
+                        id: Date.now(),
+                        text,
+                        completed: false,
+                        createdAt: new Date()
+                    });
+                    input.value = '';
+                    this.saveTasks();
+                    this.render();
+                }
+            }
+            toggleTask(id) {
+                const task = this.tasks.find(t => t.id === id);
+                if (task) {
+                    task.completed = !task.completed;
+                    this.saveTasks();
+                    this.render();
+                }
+            }
+            deleteTask(id) {
+                this.tasks = this.tasks.filter(t => t.id !== id);
+                this.saveTasks();
+                this.render();
+            }
+            clearCompleted() {
+                this.tasks = this.tasks.filter(t => !t.completed);
+                this.saveTasks();
+                this.render();
+            }
+            saveTasks() {
+                localStorage.setItem('todo-tasks', JSON.stringify(this.tasks));
+            }
+            loadTasks() {
+                const saved = localStorage.getItem('todo-tasks');
+                this.tasks = saved ? JSON.parse(saved) : [];
+            }
+            render() {
+                const tableBody = document.getElementById('task-table-body');
+                tableBody.innerHTML = '';
+                if (this.tasks.length === 0) {
+                    const tr = document.createElement('tr');
+                    const td = document.createElement('td');
+                    td.colSpan = 4;
+                    td.textContent = 'No tasks yet';
+                    tr.appendChild(td);
+                    tableBody.appendChild(tr);
+                    document.getElementById('task-count').textContent = '0 tasks remaining';
+                    return;
+                }
+                let remaining = 0;
+                this.tasks.forEach(task => {
+                    const tr = document.createElement('tr');
+                    if (task.completed) tr.className = 'completed';
+                    // Task
+                    const tdTask = document.createElement('td');
+                    tdTask.textContent = task.text;
+                    tr.appendChild(tdTask);
+                    // Created
+                    const tdCreated = document.createElement('td');
+                    tdCreated.textContent = new Date(task.createdAt).toLocaleString();
+                    tr.appendChild(tdCreated);
+                    // Status
+                    const tdStatus = document.createElement('td');
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.checked = task.completed;
+                    checkbox.title = 'Toggle completed';
+                    checkbox.onclick = () => this.toggleTask(task.id);
+                    tdStatus.appendChild(checkbox);
+                    tdStatus.appendChild(document.createTextNode(task.completed ? ' Completed' : ' Not Completed'));
+                    tr.appendChild(tdStatus);
+                    // Actions
+                    const tdActions = document.createElement('td');
+                    tdActions.className = 'actions';
+                    const delBtn = document.createElement('button');
+                    delBtn.textContent = 'Delete';
+                    delBtn.className = 'delete-btn';
+                    delBtn.onclick = () => this.deleteTask(task.id);
+                    tdActions.appendChild(delBtn);
+                    tr.appendChild(tdActions);
+                    tableBody.appendChild(tr);
+                    if (!task.completed) remaining++;
+                });
+                document.getElementById('task-count').textContent = `${remaining} task${remaining !== 1 ? 's' : ''} remaining`;
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            window.todo = new TodoApp();
+        });
+    </script>
+</body>
+</html> 

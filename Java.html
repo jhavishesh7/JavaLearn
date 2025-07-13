@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete JavaScript Mastery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .output {
+            background: #e8f5e9;
+            padding: 10px;
+            border-left: 4px solid #4caf50;
+            margin: 10px 0;
+            white-space: pre-wrap;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .card-row {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(44,62,80,0.08);
+            padding: 18px 18px 12px 18px;
+            flex: 1 1 350px;
+            min-width: 0;
+            max-width: 100%;
+            margin-bottom: 0;
+        }
+        .card pre {
+            margin: 0;
+            background: #f4f4f4;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 1em;
+            overflow-x: auto;
+        }
+        .explanation-header {
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-bottom: 8px;
+            color: #1976d2;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .explanation-content {
+            display: none;
+            font-size: 1em;
+            color: #333;
+            margin-top: 6px;
+            line-height: 1.7;
+        }
+        .explanation-content.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @media (max-width: 900px) {
+            .card-row { flex-direction: column; gap: 0; }
+            .card { margin-bottom: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Complete JavaScript Mastery</h1>
+    <p>All programs will execute automatically and display output below each section.</p>
+
+    <div class="section">
+        <h2>1. Running JavaScript</h2>
+        <div class="card-row">
+            <div class="card">
+                <pre>console.log("JavaScript is running in the browser!");</pre>
+            </div>
+            <div class="card">
+                <div class="explanation-header" onclick="toggleExplanation('exp-1')">
+                    <span>Explanation</span>
+                    <span style="font-size:1.2em;">&#x25BC;</span>
+                </div>
+                <div class="explanation-content" id="exp-1">
+                    <b>console</b>: The global object for logging information to the browser’s console.<br>
+                    <b>.log</b>: A method of the console object, used to print messages.<br>
+                    <b>("JavaScript is running in the browser!")</b>: The string to print.<br>
+                    <b>;</b>: End of the statement.<br>
+                    <br>
+                    <b>What happens?</b> This line prints the message <code>JavaScript is running in the browser!</code> to the browser’s developer console. Open your browser’s dev tools (F12) and check the Console tab to see it.
+                </div>
+            </div>
+        </div>
+        <button onclick="runSection1()">Run</button>
+        <div class="output" id="output-1"></div>
+    </div>
+
+    <div class="section">
+        <h2>2. Variables & Data Types</h2>
+        <div class="card-row">
+            <div class="card">
+                <pre>// Primitive Types
+let name = "Alice";
+let age = 25;
+let isStudent = true;
+let nothing = null;
+let notDefined;
+let bigNumber = 12345678901234567890n;
+let sym = Symbol('unique');
+
+// Complex Types
+let person = { name: "Bob", age: 30 };
+let numbers = [1, 2, 3];
+
+// Display output
+let output = `Name: ${name}, Type: ${typeof name}
+Age: ${age}, Type: ${typeof age}
+Is Student: ${isStudent}, Type: ${typeof isStudent}
+Null: ${nothing}, Type: ${typeof nothing}
+Undefined: ${notDefined}, Type: ${typeof notDefined}
+BigInt: ${bigNumber}, Type: ${typeof bigNumber}
+Symbol: ${sym.toString()}, Type: ${typeof sym}
+Person: ${JSON.stringify(person)}, Type: ${typeof person}
+Array: ${numbers}, Type: ${typeof numbers}`;
+
+document.getElementById('output-2').textContent = output;</pre>
+            </div>
+            <div class="card">
+                <div class="explanation-header" onclick="toggleExplanation('exp-2')">
+                    <span>Explanation</span>
+                    <span style="font-size:1.2em;">&#x25BC;</span>
+                </div>
+                <div class="explanation-content" id="exp-2">
+                    <b>// Primitive Types</b>: This is a comment indicating the next lines are primitive data types.<br>
+                    <b>let name = "Alice";</b> <br>&nbsp;&nbsp;- <b>let</b>: Declares a block-scoped variable.<br>&nbsp;&nbsp;- <b>name</b>: The variable name.<br>&nbsp;&nbsp;- <b>= "Alice"</b>: Assigns the string value "Alice".<br>
+                    <b>let age = 25;</b> <br>&nbsp;&nbsp;- <b>age</b> is a number.<br>
+                    <b>let isStudent = true;</b> <br>&nbsp;&nbsp;- <b>isStudent</b> is a boolean.<br>
+                    <b>let nothing = null;</b> <br>&nbsp;&nbsp;- <b>nothing</b> is explicitly set to null.<br>
+                    <b>let notDefined;</b> <br>&nbsp;&nbsp;- <b>notDefined</b> is declared but not assigned, so it is <b>undefined</b>.<br>
+                    <b>let bigNumber = 12345678901234567890n;</b> <br>&nbsp;&nbsp;- <b>bigNumber</b> is a BigInt (note the <b>n</b> at the end).<br>
+                    <b>let sym = Symbol('unique');</b> <br>&nbsp;&nbsp;- <b>sym</b> is a Symbol, a unique and immutable primitive value.<br>
+                    <br>
+                    <b>// Complex Types</b>: Comment for the next section.<br>
+                    <b>let person = { name: "Bob", age: 30 };</b> <br>&nbsp;&nbsp;- <b>person</b> is an object with properties <b>name</b> and <b>age</b>.<br>
+                    <b>let numbers = [1, 2, 3];</b> <br>&nbsp;&nbsp;- <b>numbers</b> is an array.<br>
+                    <br>
+                    <b>// Display output</b>: The next lines build a string with variable values and types.<br>
+                    <b>let output = ...</b>: Uses template literals and <b>typeof</b> to show each variable's value and type.<br>
+                    <b>document.getElementById('output-2').textContent = output;</b>: Displays the output in the browser.
+                </div>
+            </div>
+        </div>
+        <button onclick="runSection2()">Run</button>
+        <div class="output" id="output-2"></div>
+    </div>
+
+    <div class="section">
+        <h2>3. Operators</h2>
+        <div class="card-row">
+            <div class="card">
+                <pre>let a = 10, b = 5;
+let output = `Arithmetic:
+Addition: ${a + b}
+Subtraction: ${a - b}
+Multiplication: ${a * b}
+Division: ${a / b}
+Exponent: ${a ** b}
+Modulus: ${a % b}
+
+Comparison:
+Equal (==): ${a == '10'}
+Strict Equal (===): ${a === '10'}
+Not Equal (!=): ${a != '10'}
+Strict Not Equal (!==): ${a !== '10'}
+Greater Than: ${a > b}
+Less Than: ${a < b}
+
+Logical:
+AND: ${a > 5 && b < 10}
+OR: ${a > 5 || b > 10}
+NOT: ${!(a > 5)}
+
+Ternary:
+${a > b ? 'a is greater' : 'b is greater'}`;
+
+document.getElementById('output-3').textContent = output;</pre>
+            </div>
+            <div class="card">
+                <div class="explanation-header" onclick="toggleExplanation('exp-3')">
+                    <span>Explanation</span>
+                    <span style="font-size:1.2em;">&#x25BC;</span>
+                </div>
+                <div class="explanation-content" id="exp-3">
+                    <b>let a = 10, b = 5;</b>: Declares two variables <b>a</b> and <b>b</b> and assigns them values 10 and 5.<br>
+                    <b>let output = ...</b>: This is a template literal (enclosed in backticks) that allows embedding expressions like <b>${a + b}</b>.<br>
+                    <b>Addition: ${a + b}</b>: Calculates the sum of <b>a</b> and <b>b</b>.<br>
+                    <b>Subtraction: ${a - b}</b>: Calculates the difference between <b>a</b> and <b>b</b>.<br>
+                    <b>Multiplication: ${a * b}</b>: Calculates the product of <b>a</b> and <b>b</b>.<br>
+                    <b>Division: ${a / b}</b>: Calculates the quotient of <b>a</b> and <b>b</b>.<br>
+                    <b>Exponent: ${a ** b}</b>: Calculates <b>a</b> raised to the power of <b>b</b>.<br>
+                    <b>Modulus: ${a % b}</b>: Calculates the remainder when <b>a</b> is divided by <b>b</b>.<br>
+                    <br>
+                    <b>Comparison:</b><br>
+                    <b>Equal (==): ${a == '10'}</b>: Checks if <b>a</b> is equal to the string "10".<br>
+                    <b>Strict Equal (===): ${a === '10'}</b>: Checks if <b>a</b> is strictly equal to the string "10".<br>
+                    <b>Not Equal (!=): ${a != '10'}</b>: Checks if <b>a</b> is not equal to the string "10".<br>
+                    <b>Strict Not Equal (!==): ${a !== '10'}</b>: Checks if <b>a</b> is not strictly equal to the string "10".<br>
+                    <b>Greater Than: ${a > b}</b>: Checks if <b>a</b> is greater than <b>b</b>.<br>
+                    <b>Less Than: ${a < b}</b>: Checks if <b>a</b> is less than <b>b</b>.<br>
+                    <br>
+                    <b>Logical:</b><br>
+                    <b>AND: ${a > 5 && b < 10}</b>: Checks if <b>a</b> is greater than 5 AND <b>b</b> is less than 10.<br>
+                    <b>OR: ${a > 5 || b > 10}</b>: Checks if <b>a</b> is greater than 5 OR <b>b</b> is greater than 10.<br>
+                    <b>NOT: ${!(a > 5)}</b>: Checks if <b>a</b> is NOT greater than 5.<br>
+                    <br>
+                    <b>Ternary:</b><br>
+                    <b>${a > b ? 'a is greater' : 'b is greater'}</b>: If <b>a</b> is greater than <b>b</b>, it prints "a is greater". Otherwise, it prints "b is greater".
+                </div>
+            </div>
+        </div>
+        <button onclick="runSection3()">Run</button>
+        <div class="output" id="output-3"></div>
+    </div>
+
+    <div class="section">
+        <h2>4. Control Flow</h2>
+        <div class="card-row">
+            <div class="card">
+                <pre>let age = 20;
+let day = "Tuesday";
+let output = "";
+
+// If-else
+if (age >= 18) {
+    output += "Adult\n";
+} else {
+    output += "Minor\n";
+}
+
+// Switch
+switch (day) {
+    case "Monday":
+        output += "Work day\n";
+        break;
+    case "Friday":
+        output += "Almost weekend!\n";
+        break;
+    default:
+        output += "Regular day\n";
+}
+
+document.getElementById('output-4').textContent = output;</pre>
+            </div>
+            <div class="card">
+                <div class="explanation-header" onclick="toggleExplanation('exp-4')">
+                    <span>Explanation</span>
+                    <span style="font-size:1.2em;">&#x25BC;</span>
+                </div>
+                <div class="explanation-content" id="exp-4">
+                    <b>let age = 20;</b>: Declares a variable <b>age</b> and assigns it the value 20.<br>
+                    <b>let day = "Tuesday";</b>: Declares a variable <b>day</b> and assigns it the string "Tuesday".<br>
+                    <b>let output = "";</b>: Declares an empty string variable <b>output</b>.<br>
+                    <br>
+                    <b>// If-else</b><br>
+                    <b>if (age >= 18) {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>output += "Adult\n";</b><br><b>}</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>else {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>output += "Minor\n";</b><br><b>}</b><br>
+                    This block checks if <b>age</b> is 18 or older. If true, it appends "Adult" to <b>output</b> and a newline. If false, it appends "Minor" to <b>output</b> and a newline.<br>
+                    <br>
+                    <b>// Switch</b><br>
+                    <b>switch (day) {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>case "Monday":</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>output += "Work day\n";</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>break;</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>case "Friday":</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>output += "Almost weekend!\n";</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>break;</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>default:</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>output += "Regular day\n";</b><br><b>}</b><br>
+                    This block checks the value of <b>day</b>. If <b>day</b> is "Monday", it appends "Work day" to <b>output</b> and a newline. If <b>day</b> is "Friday", it appends "Almost weekend!" to <b>output</b> and a newline. For any other value, it appends "Regular day" to <b>output</b> and a newline.<br>
+                    <br>
+                    <b>document.getElementById('output-4').textContent = output;</b>: Displays the <b>output</b> string in the browser.
+                </div>
+            </div>
+        </div>
+        <button onclick="runSection4()">Run</button>
+        <div class="output" id="output-4"></div>
+    </div>
+
+    <div class="section">
+        <h2>5. Loops</h2>
+        <div class="card-row">
+            <div class="card">
+                <pre>let output = "For Loop:\n";
+for (let i = 0; i < 3; i++) {
+    output += i + " ";
+}
+
+output += "\n\nWhile Loop:\n";
+let j = 0;
+while (j < 3) {
+    output += j + " ";
+    j++;
+}
+
+output += "\n\nDo-While Loop:\n";
+let k = 0;
+do {
+    output += k + " ";
+    k++;
+} while (k < 3);
+
+output += "\n\nFor...of Loop:\n";
+let fruits = ["Apple", "Banana", "Cherry"];
+for (let fruit of fruits) {
+    output += fruit + " ";
+}
+
+document.getElementById('output-5').textContent = output;</pre>
+            </div>
+            <div class="card">
+                <div class="explanation-header" onclick="toggleExplanation('exp-5')">
+                    <span>Explanation</span>
+                    <span style="font-size:1.2em;">&#x25BC;</span>
+                </div>
+                <div class="explanation-content" id="exp-5">
+                    <b>let output = "For Loop:\n";</b>: Initializes an empty string <b>output</b> with the text "For Loop:\n".<br>
+                    <b>for (let i = 0; i < 3; i++) {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>output += i + " ";</b><br><b>}</b><br>
+                    This <b>for</b> loop iterates from 0 to 2 (3 times). For each iteration, it appends the current value of <b>i</b> followed by a space to <b>output</b>.<br>
+                    <br>
+                    <b>output += "\n\nWhile Loop:\n";</b>: Appends a newline and the text "While Loop:\n" to <b>output</b>.<br>
+                    <b>let j = 0;</b>: Declares a variable <b>j</b> and initializes it to 0.<br>
+                    <b>while (j < 3) {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>output += j + " ";</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>j++;</b><br><b>}</b><br>
+                    This <b>while</b> loop continues as long as <b>j</b> is less than 3. For each iteration, it appends the current value of <b>j</b> followed by a space to <b>output</b> and increments <b>j</b> by 1.<br>
+                    <br>
+                    <b>output += "\n\nDo-While Loop:\n";</b>: Appends a newline and the text "Do-While Loop:\n" to <b>output</b>.<br>
+                    <b>let k = 0;</b>: Declares a variable <b>k</b> and initializes it to 0.<br>
+                    <b>do {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>output += k + " ";</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>k++;</b><br><b>}</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>while (k < 3);</b><br>
+                    This <b>do-while</b> loop first appends the current value of <b>k</b> followed by a space to <b>output</b> and then increments <b>k</b> by 1. Then, it checks if <b>k</b> is less than 3. If true, it repeats the loop. This loop will execute at least once, then continue as long as <b>k</b> is less than 3.<br>
+                    <br>
+                    <b>output += "\n\nFor...of Loop:\n";</b>: Appends a newline and the text "For...of Loop:\n" to <b>output</b>.<br>
+                    <b>let fruits = ["Apple", "Banana", "Cherry"];</b>: Declares an array <b>fruits</b> with three string elements.<br>
+                    <b>for (let fruit of fruits) {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>output += fruit + " ";</b><br><b>}</b><br>
+                    This <b>for...of</b> loop iterates through each element in the <b>fruits</b> array. For each element, it appends the element followed by a space to <b>output</b>.<br>
+                    <br>
+                    <b>document.getElementById('output-5').textContent = output;</b>: Displays the <b>output</b> string in the browser.
+                </div>
+            </div>
+        </div>
+        <button onclick="runSection5()">Run</button>
+        <div class="output" id="output-5"></div>
+    </div>
+
+    <div class="section">
+        <h2>6. Functions</h2>
+        <div class="card-row">
+            <div class="card">
+                <pre>// Function declarations
+function greet(name) {
+    return `Hello, ${name}`;
+}
+
+// Function expression
+const add = function(a, b) {
+    return a + b;
+};
+
+// Arrow function
+const multiply = (a, b) => a * b;
+
+// Default parameters
+function createUser(name, role = "user") {
+    return `${name} is a ${role}`;
+}
+
+// Rest parameters
+function sum(...numbers) {
+    return numbers.reduce((total, num) => total + num, 0);
+}
+
+let output = `Greet: ${greet("Alice")}
+Add: ${add(2, 3)}
+Multiply: ${multiply(2, 3)}
+Create User: ${createUser("Bob")}
+Sum: ${sum(1, 2, 3, 4)}`;
+
+document.getElementById('output-6').textContent = output;</pre>
+            </div>
+            <div class="card">
+                <div class="explanation-header" onclick="toggleExplanation('exp-6')">
+                    <span>Explanation</span>
+                    <span style="font-size:1.2em;">&#x25BC;</span>
+                </div>
+                <div class="explanation-content" id="exp-6">
+                    <b>// Function declarations</b><br>
+                    <b>function greet(name) {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>return `Hello, ${name}`;</b><br><b>}</b><br>
+                    This is a function declaration. It takes a parameter <b>name</b> and returns a string that says "Hello, [name]".<br>
+                    <br>
+                    <b>// Function expression</b><br>
+                    <b>const add = function(a, b) {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>return a + b;</b><br><b>};</b><br>
+                    This is a function expression. It takes two parameters <b>a</b> and <b>b</b>, and returns their sum.<br>
+                    <br>
+                    <b>// Arrow function</b><br>
+                    <b>const multiply = (a, b) => a * b;</b><br>
+                    This is an arrow function. It takes two parameters <b>a</b> and <b>b</b>, and returns their product.<br>
+                    <br>
+                    <b>// Default parameters</b><br>
+                    <b>function createUser(name, role = "user") {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>return `${name} is a ${role}`;</b><br><b>}</b><br>
+                    This function takes two parameters: <b>name</b> and <b>role</b>. If <b>role</b> is not provided, it defaults to "user".<br>
+                    <br>
+                    <b>// Rest parameters</b><br>
+                    <b>function sum(...numbers) {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>return numbers.reduce((total, num) => total + num, 0);</b><br><b>}</b><br>
+                    This function takes any number of arguments (using the spread operator <b>...</b>). It returns the sum of all numbers.<br>
+                    <br>
+                    <b>let output = ...</b>: This is a template literal that embeds the results of calling these functions.<br>
+                    <b>document.getElementById('output-6').textContent = output;</b>: Displays the <b>output</b> string in the browser.
+                </div>
+            </div>
+        </div>
+        <button onclick="runSection6()">Run</button>
+        <div class="output" id="output-6"></div>
+    </div>
+
+    <div class="section">
+        <h2>7. Objects & Classes</h2>
+        <div class="card-row">
+            <div class="card">
+                <pre>// Object literal
+let car = {
+    brand: "Toyota",
+    model: "Camry",
+    displayInfo() {
+        return `${this.brand} ${this.model}`;
+    }
+};
+
+// Constructor function
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+Person.prototype.greet = function() {
+    return `Hi, I'm ${this.name}`;
+};
+
+// Class
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+    speak() {
+        return `${this.name} makes a noise`;
+    }
+}
+
+let output = `Car Info: ${car.displayInfo()}\n\n`;
+
+let person1 = new Person("Alice", 25);
+output += `Person Greeting: ${person1.greet()}\n\n`;
+
+let dog = new Animal("Rex");
+output += `Animal Sound: ${dog.speak()}`;
+
+document.getElementById('output-7').textContent = output;</pre>
+            </div>
+            <div class="card">
+                <div class="explanation-header" onclick="toggleExplanation('exp-7')">
+                    <span>Explanation</span>
+                    <span style="font-size:1.2em;">&#x25BC;</span>
+                </div>
+                <div class="explanation-content" id="exp-7">
+                    <b>// Object literal</b><br>
+                    <b>let car = {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>brand: "Toyota",</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>model: "Camry",</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>displayInfo() {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>return `${this.brand} ${this.model}`;</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>}</b><br><b>};</b><br>
+                    This is an object literal. It defines an object <b>car</b> with properties <b>brand</b> and <b>model</b>. It also has a method <b>displayInfo()</b> that returns a string combining the brand and model.<br>
+                    <br>
+                    <b>// Constructor function</b><br>
+                    <b>function Person(name, age) {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>this.name = name;</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>this.age = age;</b><br><b>}</b><br>
+                    This is a constructor function. It takes <b>name</b> and <b>age</b> as parameters and assigns them to the object's properties.<br>
+                    <br>
+                    <b>Person.prototype.greet = function() {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>return `Hi, I'm ${this.name}`;</b><br><b>};</b><br>
+                    This is a prototype method. It adds a <b>greet()</b> method to the <b>Person</b> constructor's prototype, so all instances of <b>Person</b> will have this method.<br>
+                    <br>
+                    <b>// Class</b><br>
+                    <b>class Animal {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>constructor(name) {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>this.name = name;</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>}</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>speak() {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>return `${this.name} makes a noise`;
+</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>}</b><br><b>}</b><br>
+                    This is a class. It takes a <b>name</b> parameter in its constructor and has a <b>speak()</b> method that returns a string saying the animal's name makes a noise.<br>
+                    <br>
+                    <b>let output = ...</b>: This is a template literal that embeds the results of calling these functions and methods.<br>
+                    <b>document.getElementById('output-7').textContent = output;</b>: Displays the <b>output</b> string in the browser.
+                </div>
+            </div>
+        </div>
+        <button onclick="runSection7()">Run</button>
+        <div class="output" id="output-7"></div>
+    </div>
+
+    <div class="section">
+        <h2>8. Arrays</h2>
+        <div class="card-row">
+            <div class="card">
+                <pre>let numbers = [1, 2, 3];
+numbers.push(4);
+numbers.unshift(0);
+let last = numbers.pop();
+let first = numbers.shift();
+
+let doubled = numbers.map(n => n * 2);
+let evens = numbers.filter(n => n % 2 === 0);
+let sum = numbers.reduce((total, n) => total + n, 0);
+
+let output = `Original: ${numbers}
+After operations: ${numbers}
+Doubled: ${doubled}
+Evens: ${evens}
+Sum: ${sum}`;
+
+document.getElementById('output-8').textContent = output;</pre>
+            </div>
+            <div class="card">
+                <div class="explanation-header" onclick="toggleExplanation('exp-8')">
+                    <span>Explanation</span>
+                    <span style="font-size:1.2em;">&#x25BC;</span>
+                </div>
+                <div class="explanation-content" id="exp-8">
+                    <b>let numbers = [1, 2, 3];</b><br>
+                    This line declares an array <b>numbers</b> with three elements: 1, 2, and 3.<br>
+                    <br>
+                    <b>numbers.push(4);</b><br>
+                    This adds the number 4 to the end of the <b>numbers</b> array. Now it's [1, 2, 3, 4].<br>
+                    <br>
+                    <b>numbers.unshift(0);</b><br>
+                    This adds the number 0 to the beginning of the <b>numbers</b> array. Now it's [0, 1, 2, 3, 4].<br>
+                    <br>
+                    <b>let last = numbers.pop();</b><br>
+                    This removes the last element from the <b>numbers</b> array and stores it in the <b>last</b> variable. Now <b>last</b> is 4, and <b>numbers</b> is [0, 1, 2, 3].<br>
+                    <br>
+                    <b>let first = numbers.shift();</b><br>
+                    This removes the first element from the <b>numbers</b> array and stores it in the <b>first</b> variable. Now <b>first</b> is 0, and <b>numbers</b> is [1, 2, 3].<br>
+                    <br>
+                    <b>let doubled = numbers.map(n => n * 2);</b><br>
+                    This creates a new array <b>doubled</b> by applying a function to each element of <b>numbers</b>. The function <b>n => n * 2</b> multiplies each number by 2. So <b>doubled</b> is [2, 4, 6].<br>
+                    <br>
+                    <b>let evens = numbers.filter(n => n % 2 === 0);</b><br>
+                    This creates a new array <b>evens</b> by filtering <b>numbers</b>. The function <b>n => n % 2 === 0</b> checks if a number is even. So <b>evens</b> is [2].<br>
+                    <br>
+                    <b>let sum = numbers.reduce((total, n) => total + n, 0);</b><br>
+                    This calculates the sum of all elements in the <b>numbers</b> array. The <b>reduce</b> method takes a function and an initial value. The function <b>(total, n) => total + n</b> adds the current number <b>n</b> to the <b>total</b>. Starting with <b>total = 0</b>, it adds 1, then 2, then 3. So <b>sum</b> is 6.<br>
+                    <br>
+                    <b>let output = ...</b>: This is a template literal that embeds the results of these array operations.<br>
+                    <b>document.getElementById('output-8').textContent = output;</b>: Displays the <b>output</b> string in the browser.
+                </div>
+            </div>
+        </div>
+        <button onclick="runSection8()">Run</button>
+        <div class="output" id="output-8"></div>
+    </div>
+
+    <div class="section">
+        <h2>9. Asynchronous JavaScript</h2>
+        <div class="card-row">
+            <div class="card">
+                <pre>// Callback
+function fetchData(callback) {
+    setTimeout(() => {
+        callback("Data received");
+    }, 1000);
+}
+
+// Promise
+function fetchDataPromise() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("Promise resolved");
+        }, 1000);
+    });
+}
+
+// Async/Await
+async function getData() {
+    let data = await fetchDataPromise();
+    return data;
+}
+
+let output = "Starting async operations...\n";
+
+fetchData((data) => {
+    output += `Callback: ${data}\n`;
+    document.getElementById('output-9').textContent = output;
+});
+
+fetchDataPromise().then(data => {
+    output += `Promise: ${data}\n`;
+    document.getElementById('output-9').textContent = output;
+});
+
+getData().then(data => {
+    output += `Async/Await: ${data}`;
+    document.getElementById('output-9').textContent = output;
+});
+
+document.getElementById('output-9').textContent = output;</pre>
+            </div>
+            <div class="card">
+                <div class="explanation-header" onclick="toggleExplanation('exp-9')">
+                    <span>Explanation</span>
+                    <span style="font-size:1.2em;">&#x25BC;</span>
+                </div>
+                <div class="explanation-content" id="exp-9">
+                    <b>// Callback</b><br>
+                    <b>function fetchData(callback) {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>setTimeout(() => {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>callback("Data received");</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>}, 1000);</b><br><b>}</b><br>
+                    This is a callback function. It takes a <b>callback</b> function as an argument. It simulates an asynchronous operation (like fetching data) by waiting for 1 second and then calling the <b>callback</b> with the string "Data received".<br>
+                    <br>
+                    <b>// Promise</b><br>
+                    <b>function fetchDataPromise() {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>return new Promise((resolve) => {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>setTimeout(() => {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>resolve("Promise resolved");</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>}, 1000);</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>});</b><br><b>}</b><br>
+                    This is a Promise. It simulates an asynchronous operation that resolves after 1 second with the string "Promise resolved".<br>
+                    <br>
+                    <b>// Async/Await</b><br>
+                    <b>async function getData() {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>let data = await fetchDataPromise();</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>return data;</b><br><b>}</b><br>
+                    This is an async function. It uses the <b>await</b> keyword to wait for the <b>fetchDataPromise()</b> to resolve. It then returns the resolved data.<br>
+                    <br>
+                    <b>let output = ...</b>: This is a template literal that embeds the results of these async operations.<br>
+                    <b>document.getElementById('output-9').textContent = output;</b>: Displays the <b>output</b> string in the browser.
+                </div>
+            </div>
+        </div>
+        <button onclick="runSection9()">Run</button>
+        <div class="output" id="output-9"></div>
+    </div>
+
+    <div class="section">
+        <h2>10. Error Handling</h2>
+        <div class="card-row">
+            <div class="card">
+                <pre>let output = "";
+
+try {
+    // This will throw an error
+    let result = riskyOperation();
+    output += result;
+} catch (error) {
+    output += `Caught an error: ${error.message}\n`;
+} finally {
+    output += "This always runs";
+}
+
+// Custom error
+class CustomError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "CustomError";
+    }
+}
+
+try {
+    throw new CustomError("Something went wrong");
+} catch (error) {
+    if (error instanceof CustomError) {
+        output += `\nCustom Error: ${error.message}`;
+    }
+}
+
+document.getElementById('output-10').textContent = output;</pre>
+            </div>
+            <div class="card">
+                <div class="explanation-header" onclick="toggleExplanation('exp-10')">
+                    <span>Explanation</span>
+                    <span style="font-size:1.2em;">&#x25BC;</span>
+                </div>
+                <div class="explanation-content" id="exp-10">
+                    <b>let output = "";</b><br>
+                    This line declares an empty string variable <b>output</b>.<br>
+                    <br>
+                    <b>try {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>// This will throw an error</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>let result = riskyOperation();</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>output += result;</b><br><b>}</b><br>
+                    This <b>try</b> block attempts to execute a function that throws an error. If it succeeds, it appends the result to <b>output</b>. If it fails, it moves to the <b>catch</b> block.<br>
+                    <br>
+                    <b>catch (error) {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>output += `Caught an error: ${error.message}\n`;</b><br><b>}</b><br>
+                    This <b>catch</b> block handles the error thrown by <b>riskyOperation()</b>. It appends the error message to <b>output</b>.<br>
+                    <br>
+                    <b>finally {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>output += "This always runs";</b><br><b>}</b><br>
+                    This <b>finally</b> block always executes, regardless of whether an error occurred or not. It appends the string "This always runs" to <b>output</b>.<br>
+                    <br>
+                    <b>// Custom error</b><br>
+                    <b>class CustomError extends Error {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>constructor(message) {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>super(message);</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>this.name = "CustomError";</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>}</b><br><b>}</b><br>
+                    This is a custom error class that extends the built-in <b>Error</b> class. It takes a <b>message</b> parameter and assigns it to the error's message property and a specific name property.<br>
+                    <br>
+                    <b>try {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>throw new CustomError("Something went wrong");</b><br><b>}</b><br>
+                    This <b>try</b> block throws an instance of the <b>CustomError</b> class.<br>
+                    <br>
+                    <b>catch (error) {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>if (error instanceof CustomError) {</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>output += `\nCustom Error: ${error.message}`;</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>}</b><br><b>}</b><br>
+                    This <b>catch</b> block checks if the error is an instance of the <b>CustomError</b> class. If true, it appends the error message to <b>output</b>.<br>
+                    <br>
+                    <b>document.getElementById('output-10').textContent = output;</b>: Displays the <b>output</b> string in the browser.
+                </div>
+            </div>
+        </div>
+        <button onclick="runSection10()">Run</button>
+        <div class="output" id="output-10"></div>
+    </div>
+
+    <div class="section">
+        <h2>11. Modern Features</h2>
+        <div class="card-row">
+            <div class="card">
+                <pre>// Destructuring
+let [x, y] = [1, 2];
+let {name, age} = {name: "Alice", age: 25};
+
+// Spread
+let arr1 = [1, 2];
+let arr2 = [...arr1, 3, 4];
+
+// Template literals
+let text = `Hello ${name}, you are ${age} years old`;
+
+// Optional chaining
+let user = { profile: { name: "Bob" } };
+let city = user?.profile?.address?.city;
+
+// Nullish coalescing
+let setting = null;
+let defaultValue = setting ?? "default";
+
+let output = `Destructuring: x=${x}, y=${y}, name=${name}
+Spread: ${arr2}
+Template: ${text}
+Optional Chaining: ${city}
+Nullish Coalescing: ${defaultValue}`;
+
+document.getElementById('output-11').textContent = output;</pre>
+            </div>
+            <div class="card">
+                <div class="explanation-header" onclick="toggleExplanation('exp-11')">
+                    <span>Explanation</span>
+                    <span style="font-size:1.2em;">&#x25BC;</span>
+                </div>
+                <div class="explanation-content" id="exp-11">
+                    <b>// Destructuring</b><br>
+                    <b>let [x, y] = [1, 2];</b><br>
+                    This line uses array destructuring to assign the first element of the array <b>[1, 2]</b> to <b>x</b> and the second element to <b>y</b>. So <b>x</b> is 1 and <b>y</b> is 2.<br>
+                    <br>
+                    <b>let {name, age} = {name: "Alice", age: 25};</b><br>
+                    This line uses object destructuring to assign the <b>name</b> property of the object <b>{name: "Alice", age: 25}</b> to the <b>name</b> variable and the <b>age</b> property to the <b>age</b> variable. So <b>name</b> is "Alice" and <b>age</b> is 25.<br>
+                    <br>
+                    <b>// Spread</b><br>
+                    <b>let arr1 = [1, 2];</b><br>
+                    <b>let arr2 = [...arr1, 3, 4];</b><br>
+                    This line creates a new array <b>arr2</b> by spreading the elements of <b>arr1</b> (1, 2) and then adding 3 and 4. So <b>arr2</b> is [1, 2, 3, 4].<br>
+                    <br>
+                    <b>// Template literals</b><br>
+                    <b>let text = `Hello ${name}, you are ${age} years old`;</b><br>
+                    This line uses template literals to embed the values of <b>name</b> and <b>age</b> into the string. So <b>text</b> is "Hello Alice, you are 25 years old".<br>
+                    <br>
+                    <b>// Optional chaining</b><br>
+                    <b>let user = { profile: { name: "Bob" } };</b><br>
+                    <b>let city = user?.profile?.address?.city;</b><br>
+                    This line uses optional chaining to safely access the <b>city</b> property of <b>user</b>'s <b>profile</b>'s <b>address</b>. If any of these properties are null or undefined, it will return <b>undefined</b> instead of throwing an error. So <b>city</b> is <b>undefined</b> because <b>user</b> doesn't have an <b>address</b> property.<br>
+                    <br>
+                    <b>// Nullish coalescing</b><br>
+                    <b>let setting = null;</b><br>
+                    <b>let defaultValue = setting ?? "default";</b><br>
+                    This line uses the nullish coalescing operator <b>??</b>. If <b>setting</b> is <b>null</b> or <b>undefined</b>, it returns <b>"default"</b>. Otherwise, it returns the value of <b>setting</b>. So <b>defaultValue</b> is <b>"default"</b> because <b>setting</b> is <b>null</b>.<br>
+                    <br>
+                    <b>let output = ...</b>: This is a template literal that embeds the results of these modern features.<br>
+                    <b>document.getElementById('output-11').textContent = output;</b>: Displays the <b>output</b> string in the browser.
+                </div>
+            </div>
+        </div>
+        <button onclick="runSection11()">Run</button>
+        <div class="output" id="output-11"></div>
+    </div>
+
+    <!-- Place this at the very end, after all other sections -->
+    <div style="text-align:center; margin: 40px 0;">
+    <a href="TodoApp.html" id="open-todo-btn" style="
+        display: inline-block;
+        background: #4caf50;
+        color: white;
+        font-size: 1.5em;
+        padding: 20px 40px;
+        border-radius: 8px;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(44,62,80,0.08);
+        transition: background 0.2s;
+    "
+    onmouseover="this.style.background='#388e3c'"
+    onmouseout="this.style.background='#4caf50'"
+    >
+        Open Todo List App
+    </a>
+</div>
+    <div style="text-align:center; margin: 40px 0;">
+        <a href="ReactBasics.html" id="open-react-btn" style="
+            display: inline-block;
+            background: #1976d2;
+            color: white;
+            font-size: 1.5em;
+            padding: 20px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(44,62,80,0.08);
+            transition: background 0.2s;
+        "
+        onmouseover="this.style.background='#0d47a1'"
+        onmouseout="this.style.background='#1976d2'"
+        >
+            Learn React Basics
+        </a>
+    </div>
+    <script>
+        // Section 1
+        function runSection1() {
+            document.getElementById('output-1').textContent = "JavaScript is running in the browser!";
+        }
+        // Section 2
+        function runSection2() {
+            let name = "Alice";
+            let age = 25;
+            let isStudent = true;
+            let nothing = null;
+            let notDefined;
+            let bigNumber = 12345678901234567890n;
+            let sym = Symbol('unique');
+            let person = { name: "Bob", age: 30 };
+            let numbers = [1, 2, 3];
+            let output = `Name: ${name}, Type: ${typeof name}\nAge: ${age}, Type: ${typeof age}\nIs Student: ${isStudent}, Type: ${typeof isStudent}\nNull: ${nothing}, Type: ${typeof nothing}\nUndefined: ${notDefined}, Type: ${typeof notDefined}\nBigInt: ${bigNumber}, Type: ${typeof bigNumber}\nSymbol: ${sym.toString()}, Type: ${typeof sym}\nPerson: ${JSON.stringify(person)}, Type: ${typeof person}\nArray: ${numbers}, Type: ${typeof numbers}`;
+            document.getElementById('output-2').textContent = output;
+        }
+        // Section 3
+        function runSection3() {
+            let a = 10, b = 5;
+            let output = `Arithmetic:\nAddition: ${a + b}\nSubtraction: ${a - b}\nMultiplication: ${a * b}\nDivision: ${a / b}\nExponent: ${a ** b}\nModulus: ${a % b}\n\nComparison:\nEqual (==): ${a == '10'}\nStrict Equal (===): ${a === '10'}\nNot Equal (!=): ${a != '10'}\nStrict Not Equal (!==): ${a !== '10'}\nGreater Than: ${a > b}\nLess Than: ${a < b}\n\nLogical:\nAND: ${a > 5 && b < 10}\nOR: ${a > 5 || b > 10}\nNOT: ${!(a > 5)}\n\nTernary:\n${a > b ? 'a is greater' : 'b is greater'}`;
+            document.getElementById('output-3').textContent = output;
+        }
+        // Section 4
+        function runSection4() {
+            let age = 20;
+            let day = "Tuesday";
+            let output = "";
+            if (age >= 18) {
+                output += "Adult\n";
+            } else {
+                output += "Minor\n";
+            }
+            switch (day) {
+                case "Monday":
+                    output += "Work day\n";
+                    break;
+                case "Friday":
+                    output += "Almost weekend!\n";
+                    break;
+                default:
+                    output += "Regular day\n";
+            }
+            document.getElementById('output-4').textContent = output;
+        }
+        // Section 5
+        function runSection5() {
+            let output = "For Loop:\n";
+            for (let i = 0; i < 3; i++) {
+                output += i + " ";
+            }
+            output += "\n\nWhile Loop:\n";
+            let j = 0;
+            while (j < 3) {
+                output += j + " ";
+                j++;
+            }
+            output += "\n\nDo-While Loop:\n";
+            let k = 0;
+            do {
+                output += k + " ";
+                k++;
+            } while (k < 3);
+            output += "\n\nFor...of Loop:\n";
+            let fruits = ["Apple", "Banana", "Cherry"];
+            for (let fruit of fruits) {
+                output += fruit + " ";
+            }
+            document.getElementById('output-5').textContent = output;
+        }
+        // Section 6
+        function runSection6() {
+            function greet(name) {
+                return `Hello, ${name}`;
+            }
+            const add = function(a, b) {
+                return a + b;
+            };
+            const multiply = (a, b) => a * b;
+            function createUser(name, role = "user") {
+                return `${name} is a ${role}`;
+            }
+            function sum(...numbers) {
+                return numbers.reduce((total, num) => total + num, 0);
+            }
+            let output = `Greet: ${greet("Alice")}\nAdd: ${add(2, 3)}\nMultiply: ${multiply(2, 3)}\nCreate User: ${createUser("Bob")}\nSum: ${sum(1, 2, 3, 4)}`;
+            document.getElementById('output-6').textContent = output;
+        }
+        // Section 7
+        function runSection7() {
+            let car = {
+                brand: "Toyota",
+                model: "Camry",
+                displayInfo() {
+                    return `${this.brand} ${this.model}`;
+                }
+            };
+            function Person(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            Person.prototype.greet = function() {
+                return `Hi, I'm ${this.name}`;
+            };
+            class Animal {
+                constructor(name) {
+                    this.name = name;
+                }
+                speak() {
+                    return `${this.name} makes a noise`;
+                }
+            }
+            let output = `Car Info: ${car.displayInfo()}\n\n`;
+            let person1 = new Person("Alice", 25);
+            output += `Person Greeting: ${person1.greet()}\n\n`;
+            let dog = new Animal("Rex");
+            output += `Animal Sound: ${dog.speak()}`;
+            document.getElementById('output-7').textContent = output;
+        }
+        // Section 8
+        function runSection8() {
+            let numbers = [1, 2, 3];
+            numbers.push(4);
+            numbers.unshift(0);
+            let last = numbers.pop();
+            let first = numbers.shift();
+            let doubled = numbers.map(n => n * 2);
+            let evens = numbers.filter(n => n % 2 === 0);
+            let sum = numbers.reduce((total, n) => total + n, 0);
+            let output = `Original: ${numbers}\nAfter operations: ${numbers}\nDoubled: ${doubled}\nEvens: ${evens}\nSum: ${sum}`;
+            document.getElementById('output-8').textContent = output;
+        }
+        // Section 9
+        function runSection9() {
+            let output = "Starting async operations...\n";
+            document.getElementById('output-9').textContent = output;
+            function fetchData(callback) {
+                setTimeout(() => {
+                    callback("Data received");
+                }, 1000);
+            }
+            function fetchDataPromise() {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve("Promise resolved");
+                    }, 1000);
+                });
+            }
+            async function getData() {
+                let data = await fetchDataPromise();
+                return data;
+            }
+            fetchData((data) => {
+                output += `Callback: ${data}\n`;
+                document.getElementById('output-9').textContent = output;
+            });
+            fetchDataPromise().then(data => {
+                output += `Promise: ${data}\n`;
+                document.getElementById('output-9').textContent = output;
+            });
+            getData().then(data => {
+                output += `Async/Await: ${data}`;
+                document.getElementById('output-9').textContent = output;
+            });
+        }
+        // Section 10
+        function runSection10() {
+            let output = "";
+            function riskyOperation() {
+                throw new Error("Risky operation failed");
+            }
+            try {
+                let result = riskyOperation();
+                output += result;
+            } catch (error) {
+                output += `Caught an error: ${error.message}\n`;
+            } finally {
+                output += "This always runs";
+            }
+            class CustomError extends Error {
+                constructor(message) {
+                    super(message);
+                    this.name = "CustomError";
+                }
+            }
+            try {
+                throw new CustomError("Something went wrong");
+            } catch (error) {
+                if (error instanceof CustomError) {
+                    output += `\nCustom Error: ${error.message}`;
+                }
+            }
+            document.getElementById('output-10').textContent = output;
+        }
+        // Section 11
+        function runSection11() {
+            let [x, y] = [1, 2];
+            let {name, age} = {name: "Alice", age: 25};
+            let arr1 = [1, 2];
+            let arr2 = [...arr1, 3, 4];
+            let text = `Hello ${name}, you are ${age} years old`;
+            let user = { profile: { name: "Bob" } };
+            let city = user?.profile?.address?.city;
+            let setting = null;
+            let defaultValue = setting ?? "default";
+            let output = `Destructuring: x=${x}, y=${y}, name=${name}\nSpread: ${arr2}\nTemplate: ${text}\nOptional Chaining: ${city}\nNullish Coalescing: ${defaultValue}`;
+            document.getElementById('output-11').textContent = output;
+        }
+        // On page load, clear all outputs
+        document.addEventListener('DOMContentLoaded', function() {
+            for (let i = 1; i <= 11; i++) {
+                document.getElementById('output-' + i).textContent = '';
+            }
+        });
+        function toggleExplanation(id) {
+            var content = document.getElementById(id);
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+            } else {
+                content.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

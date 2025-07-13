@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Basics for Beginners</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(44,62,80,0.10);
+            padding: 32px 24px 24px 24px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 24px;
+        }
+        .card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(44,62,80,0.06);
+            margin-bottom: 24px;
+            padding: 20px 24px 16px 24px;
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #1976d2;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-content {
+            display: none;
+            margin-top: 10px;
+            font-size: 1.08em;
+            color: #333;
+            line-height: 1.7;
+        }
+        .card-content.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        pre, code {
+            background: #f4f4f4;
+            border-radius: 6px;
+            padding: 10px;
+            font-size: 1em;
+            overflow-x: auto;
+        }
+        .diagram {
+            display: flex;
+            justify-content: center;
+            margin: 18px 0;
+        }
+        .quiz {
+            background: #e3f2fd;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-top: 12px;
+        }
+        .quiz label {
+            display: block;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        .quiz-result {
+            margin-top: 8px;
+            font-weight: bold;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @media (max-width: 700px) {
+            .container { padding: 12px 2vw 12px 2vw; }
+            .card { padding: 12px 8px 10px 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>React Basics for Beginners</h1>
+        <!-- What is React Card -->
+        <div class="card">
+            <h2 onclick="toggleCard('what-is-react-card')">What is React? <span style="font-size:1.2em;">&#x25BC;</span></h2>
+            <div class="card-content" id="what-is-react-card">
+                <b>React</b> is a JavaScript library for building user interfaces, created by Facebook.<br><br>
+                <ul>
+                    <li>Makes it easy to create interactive web applications.</li>
+                    <li>Uses a component-based architecture (reusable pieces of UI).</li>
+                    <li>Efficiently updates the DOM when data changes.</li>
+                </ul>
+                <b>Why React?</b>
+                <ul>
+                    <li>Component reusability</li>
+                    <li>Virtual DOM for performance</li>
+                    <li>Large ecosystem and community</li>
+                    <li>Declarative programming</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Components Card -->
+        <div class="card">
+            <h2 onclick="toggleCard('components-card')">Components <span style="font-size:1.2em;">&#x25BC;</span></h2>
+            <div class="card-content" id="components-card">
+                <b>Components</b> are the building blocks of React applications.<br><br>
+                <ul>
+                    <li>Think of them as custom HTML elements.</li>
+                    <li>Can be reused throughout your app.</li>
+                    <li>Can contain other components.</li>
+                </ul>
+                <b>Example Component:</b>
+                <pre><code>function Welcome() {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Hello, React!&lt;/h1&gt;
+      &lt;p&gt;Welcome to my first component.&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+                <b>Using the Component:</b>
+                <pre><code>&lt;Welcome /&gt;</code></pre>
+            </div>
+        </div>
+        <!-- JSX Card -->
+        <div class="card">
+            <h2 onclick="toggleCard('jsx-card')">JSX <span style="font-size:1.2em;">&#x25BC;</span></h2>
+            <div class="card-content" id="jsx-card">
+                <b>JSX</b> is a syntax extension for JavaScript that looks like HTML.<br><br>
+                <ul>
+                    <li>Allows you to write HTML-like code in JavaScript.</li>
+                    <li>Gets compiled to regular JavaScript.</li>
+                    <li>Makes components easier to read and write.</li>
+                </ul>
+                <b>JSX vs Regular JavaScript:</b>
+                <pre><code>// JSX
+const element = &lt;h1&gt;Hello, world!&lt;/h1&gt;;
+
+// Regular JavaScript (what JSX compiles to)
+const element = React.createElement('h1', null, 'Hello, world!');</code></pre>
+                <b>JSX Rules:</b>
+                <ul>
+                    <li>Must have a single parent element (or use React.Fragment).</li>
+                    <li>Use <code>className</code> instead of <code>class</code>.</li>
+                    <li>Use <code>htmlFor</code> instead of <code>for</code>.</li>
+                    <li>Use camelCase for attributes.</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Props Card -->
+        <div class="card">
+            <h2 onclick="toggleCard('props-card')">Props <span style="font-size:1.2em;">&#x25BC;</span></h2>
+            <div class="card-content" id="props-card">
+                <b>Props</b> (properties) are how you pass data from parent to child components.<br><br>
+                <ul>
+                    <li>Props are read-only (cannot be changed by the child).</li>
+                    <li>Can be any type of data (strings, numbers, objects, functions).</li>
+                </ul>
+                <b>Example:</b>
+                <pre><code>// Parent component
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;Greeting name="Alice" age={25} /&gt;
+      &lt;Greeting name="Bob" age={30} /&gt;
+    &lt;/div&gt;
+  );
+}
+
+// Child component
+function Greeting(props) {
+  return (
+    &lt;h2&gt;Hello, {props.name}! You are {props.age} years old.&lt;/h2&gt;
+  );
+}</code></pre>
+                <b>Destructuring Props:</b>
+                <pre><code>function Greeting({ name, age }) {
+  return (
+    &lt;h2&gt;Hello, {name}! You are {age} years old.&lt;/h2&gt;
+  );
+}</code></pre>
+            </div>
+        </div>
+        <!-- State Card -->
+        <div class="card">
+            <h2 onclick="toggleCard('state-card')">State <span style="font-size:1.2em;">&#x25BC;</span></h2>
+            <div class="card-content" id="state-card">
+                <b>State</b> is data that can change over time in a component.<br><br>
+                <ul>
+                    <li>When state changes, the component re-renders.</li>
+                    <li>State is private to the component.</li>
+                    <li>Use <code>useState</code> hook to manage state.</li>
+                </ul>
+                <b>Example with useState:</b>
+                <pre><code>import { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Count: {count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        Increment
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+                <b>useState Breakdown:</b>
+                <ul>
+                    <li><code>useState(0)</code> - Creates state with initial value 0.</li>
+                    <li><code>count</code> - Current state value.</li>
+                    <li><code>setCount</code> - Function to update state.</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Hooks Card -->
+        <div class="card">
+            <h2 onclick="toggleCard('hooks-card')">Hooks <span style="font-size:1.2em;">&#x25BC;</span></h2>
+            <div class="card-content" id="hooks-card">
+                <b>Hooks</b> are functions that let you "hook into" React features.<br><br>
+                <ul>
+                    <li>Must be called at the top level of your component.</li>
+                    <li>Cannot be called inside loops, conditions, or nested functions.</li>
+                </ul>
+                <b>Common Hooks:</b>
+                <ul>
+                    <li><code>useState</code> - Manage state</li>
+                    <li><code>useEffect</code> - Handle side effects</li>
+                    <li><code>useRef</code> - Access DOM elements</li>
+                    <li><code>useContext</code> - Access context</li>
+                </ul>
+                <b>useEffect Example:</b>
+                <pre><code>import { useState, useEffect } from 'react';
+
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+
+  useEffect(() =&gt; {
+    // Fetch user data when component mounts or userId changes
+    fetch(`/api/users/${userId}`)
+      .then(response =&gt; response.json())
+      .then(data =&gt; setUser(data));
+  }, [userId]);
+
+  if (!user) return &lt;div&gt;Loading...&lt;/div&gt;;
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;{user.name}&lt;/h2&gt;
+      &lt;p&gt;{user.email}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+            </div>
+        </div>
+        <!-- Event Handling Card -->
+        <div class="card">
+            <h2 onclick="toggleCard('events-card')">Event Handling <span style="font-size:1.2em;">&#x25BC;</span></h2>
+            <div class="card-content" id="events-card">
+                <b>Event Handling</b> in React is similar to HTML, but with camelCase names.<br><br>
+                <ul>
+                    <li>Use camelCase for event names (<code>onClick</code>, <code>onChange</code>).</li>
+                    <li>Pass functions as event handlers.</li>
+                    <li>Event handlers receive an event object.</li>
+                </ul>
+                <b>Example:</b>
+                <pre><code>function Form() {
+  const [name, setName] = useState('');
+
+  const handleSubmit = (event) =&gt; {
+    event.preventDefault();
+    alert('Hello, ' + name + '!');
+  };
+
+  const handleChange = (event) =&gt; {
+    setName(event.target.value);
+  };
+
+  return (
+    &lt;form onSubmit={handleSubmit}&gt;
+      &lt;input
+        type="text"
+        value={name}
+        onChange={handleChange}
+        placeholder="Enter your name"
+      /&gt;
+      &lt;button type="submit"&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</code></pre>
+            </div>
+        </div>
+        <!-- Conditional Rendering Card -->
+        <div class="card">
+            <h2 onclick="toggleCard('conditional-card')">Conditional Rendering <span style="font-size:1.2em;">&#x25BC;</span></h2>
+            <div class="card-content" id="conditional-card">
+                <b>Conditional Rendering</b> allows you to show different content based on conditions.<br><br>
+                <b>Using if/else:</b>
+                <pre><code>function Greeting({ isLoggedIn }) {
+  if (isLoggedIn) {
+    return &lt;h1&gt;Welcome back!&lt;/h1&gt;;
+  } else {
+    return &lt;h1&gt;Please log in.&lt;/h1&gt;;
+  }
+}</code></pre>
+                <b>Using ternary operator:</b>
+                <pre><code>function Greeting({ isLoggedIn }) {
+  return (
+    &lt;h1&gt;{isLoggedIn ? 'Welcome back!' : 'Please log in.'}&lt;/h1&gt;
+  );
+}</code></pre>
+                <b>Using logical AND:</b>
+                <pre><code>function Notification({ message }) {
+  return (
+    &lt;div&gt;
+      {message && &lt;p&gt;{message}&lt;/p&gt;}
+    &lt;/div&gt;
+  );
+}</code></pre>
+            </div>
+        </div>
+        <!-- Lists Card -->
+        <div class="card">
+            <h2 onclick="toggleCard('lists-card')">Lists & Keys <span style="font-size:1.2em;">&#x25BC;</span></h2>
+            <div class="card-content" id="lists-card">
+                <b>Lists</b> in React are rendered using JavaScript's <code>map()</code> function.<br><br>
+                <b>Example:</b>
+                <pre><code>function TodoList() {
+  const todos = ['Learn React', 'Build an app', 'Deploy to production'];
+
+  return (
+    &lt;ul&gt;
+      {todos.map((todo, index) =&gt; (
+        &lt;li key={index}&gt;{todo}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}</code></pre>
+                <b>Important Notes:</b>
+                <ul>
+                    <li>Always use a <code>key</code> prop when rendering lists.</li>
+                    <li>Keys help React identify which items have changed.</li>
+                    <li>Use unique, stable IDs when possible (not array indices).</li>
+                </ul>
+                <b>Better Example with IDs:</b>
+                <pre><code>function TodoList() {
+  const todos = [
+    { id: 1, text: 'Learn React' },
+    { id: 2, text: 'Build an app' },
+    { id: 3, text: 'Deploy to production' }
+  ];
+
+  return (
+    &lt;ul&gt;
+      {todos.map(todo =&gt; (
+        &lt;li key={todo.id}&gt;{todo.text}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}</code></pre>
+            </div>
+        </div>
+        <!-- Quiz Card -->
+        <div class="card">
+            <h2 onclick="toggleCard('quiz-card')">Quick Quiz <span style="font-size:1.2em;">&#x25BC;</span></h2>
+            <div class="card-content" id="quiz-card">
+                <div class="quiz">
+                    <b>What is JSX?</b><br>
+                    <label><input type="radio" name="quiz1" value="A"> A JavaScript framework</label>
+                    <label><input type="radio" name="quiz1" value="B"> A syntax extension for JavaScript</label>
+                    <label><input type="radio" name="quiz1" value="C"> A CSS preprocessor</label>
+                    <div class="quiz-result" id="quiz1-result"></div>
+                </div>
+                <div class="quiz" style="margin-top:18px;">
+                    <b>How do you pass data to a child component?</b><br>
+                    <label><input type="radio" name="quiz2" value="A"> Using state</label>
+                    <label><input type="radio" name="quiz2" value="B"> Using props</label>
+                    <label><input type="radio" name="quiz2" value="C"> Using hooks</label>
+                    <div class="quiz-result" id="quiz2-result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align:center; margin: 40px 0;">
+        <a href="Java.html" id="open-java-btn" style="
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            font-size: 1.5em;
+            padding: 20px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(44,62,80,0.08);
+            transition: background 0.2s;
+        "
+        onmouseover="this.style.background='#388e3c'"
+        onmouseout="this.style.background='#4caf50'"
+        >
+            Back to JavaScript
+        </a>
+    </div>
+    <script>
+        function toggleCard(id) {
+            var content = document.getElementById(id);
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+            } else {
+                content.classList.add('active');
+            }
+        }
+        // Quiz logic
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('input[name="quiz1"]').forEach(function(input) {
+                input.addEventListener('change', function() {
+                    var result = document.getElementById('quiz1-result');
+                    if (this.value === 'B') {
+                        result.textContent = 'Correct! JSX is a syntax extension for JavaScript.';
+                        result.style.color = '#388e3c';
+                    } else {
+                        result.textContent = 'Try again!';
+                        result.style.color = '#e53935';
+                    }
+                });
+            });
+            document.querySelectorAll('input[name="quiz2"]').forEach(function(input) {
+                input.addEventListener('change', function() {
+                    var result = document.getElementById('quiz2-result');
+                    if (this.value === 'B') {
+                        result.textContent = 'Correct! Props are used to pass data to child components.';
+                        result.style.color = '#388e3c';
+                    } else {
+                        result.textContent = 'Try again!';
+                        result.style.color = '#e53935';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
