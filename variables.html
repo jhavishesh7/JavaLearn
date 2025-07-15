@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Variables & Data Types - JavaScript Mastery</title>
+  <style>
+    body { background: #121212; color: #fff; font-family: sans-serif; padding: 20px; }
+    pre { background: #1e1e1e; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+    .output { background: #222; color: #b9f6ca; padding: 12px; border-radius: 5px; min-height: 40px; margin-bottom: 20px; white-space: pre-line; }
+    .btn { display: inline-block; background: #4caf50; color: white; font-size: 1.1em; padding: 10px 24px; border-radius: 6px; text-decoration: none; margin-top: 20px; }
+    .btn:hover { background: #388e3c; }
+    .explanation { background: #263238; color: #ffe082; border-radius: 6px; padding: 18px; margin-top: 30px; font-size: 1.08em; line-height: 1.7; }
+    .explanation h2 { color: #ffd600; margin-top: 0; }
+  </style>
+</head>
+<body>
+  <h1>Variables & Data Types</h1>
+  <pre><code>let name = "Alice";
+let age = 25;
+let isStudent = true;
+let nothing = null;
+let notDefined;
+let bigNumber = 12345678901234567890n;
+let sym = Symbol('unique');
+
+let person = { name: "Bob", age: 30 };
+let numbers = [1, 2, 3];
+
+let output = `Name: ${name}, Type: ${typeof name}
+Age: ${age}, Type: ${typeof age}
+Is Student: ${isStudent}, Type: ${typeof isStudent}
+Null: ${nothing}, Type: ${typeof nothing}
+Undefined: ${notDefined}, Type: ${typeof notDefined}
+BigInt: ${bigNumber}, Type: ${typeof bigNumber}
+Symbol: ${sym.toString()}, Type: ${typeof sym}
+Person: ${JSON.stringify(person)}, Type: ${typeof person}
+Array: ${numbers}, Type: ${typeof numbers}`;
+
+document.getElementById('output').textContent = output;</code></pre>
+  <div class="output" id="output"></div>
+  <a href="index.html" class="btn">Back to Index</a>
+  <div class="explanation">
+    <h2>Explanation</h2>
+    <ul>
+      <li><b>let name = "Alice";</b> — Declares a string variable called <b>name</b>.</li>
+      <li><b>let age = 25;</b> — Declares a number variable called <b>age</b>.</li>
+      <li><b>let isStudent = true;</b> — Declares a boolean variable called <b>isStudent</b>.</li>
+      <li><b>let nothing = null;</b> — <b>nothing</b> is explicitly set to <b>null</b> (no value).</li>
+      <li><b>let notDefined;</b> — <b>notDefined</b> is declared but not assigned, so it is <b>undefined</b>.</li>
+      <li><b>let bigNumber = 12345678901234567890n;</b> — <b>bigNumber</b> is a <b>BigInt</b> (large integer, note the <b>n</b> at the end).</li>
+      <li><b>let sym = Symbol('unique');</b> — <b>sym</b> is a <b>Symbol</b>, a unique and immutable primitive value.</li>
+      <li><b>let person = { name: "Bob", age: 30 };</b> — <b>person</b> is an object with properties <b>name</b> and <b>age</b>.</li>
+      <li><b>let numbers = [1, 2, 3];</b> — <b>numbers</b> is an array.</li>
+      <li>The <b>output</b> variable uses template literals and <b>typeof</b> to show each variable's value and type.</li>
+      <li>The result is displayed in the green output box above.</li>
+    </ul>
+  </div>
+  <script>
+    let name = "Alice";
+    let age = 25;
+    let isStudent = true;
+    let nothing = null;
+    let notDefined;
+    let bigNumber = 12345678901234567890n;
+    let sym = Symbol('unique');
+    let person = { name: "Bob", age: 30 };
+    let numbers = [1, 2, 3];
+    let output = `Name: ${name}, Type: ${typeof name}
+Age: ${age}, Type: ${typeof age}
+Is Student: ${isStudent}, Type: ${typeof isStudent}
+Null: ${nothing}, Type: ${typeof nothing}
+Undefined: ${notDefined}, Type: ${typeof notDefined}
+BigInt: ${bigNumber}, Type: ${typeof bigNumber}
+Symbol: ${sym.toString()}, Type: ${typeof sym}
+Person: ${JSON.stringify(person)}, Type: ${typeof person}
+Array: ${numbers}, Type: ${typeof numbers}`;
+    document.getElementById('output').textContent = output;
+  </script>
+</body>
+</html> 

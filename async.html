@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Async JavaScript - JavaScript Mastery</title>
+  <style>
+    body { background: #121212; color: #fff; font-family: sans-serif; padding: 20px; }
+    pre { background: #1e1e1e; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+    .output { background: #222; color: #b9f6ca; padding: 12px; border-radius: 5px; min-height: 40px; margin-bottom: 20px; white-space: pre-line; }
+    .btn { display: inline-block; background: #4caf50; color: white; font-size: 1.1em; padding: 10px 24px; border-radius: 6px; text-decoration: none; margin-top: 20px; }
+    .btn:hover { background: #388e3c; }
+    .explanation { background: #263238; color: #ffe082; border-radius: 6px; padding: 18px; margin-top: 30px; font-size: 1.08em; line-height: 1.7; }
+    .explanation h2 { color: #ffd600; margin-top: 0; }
+  </style>
+</head>
+<body>
+  <h1>Async JavaScript</h1>
+  <pre><code>function fetchData(callback) {
+    setTimeout(() => {
+        callback("Data received");
+    }, 1000);
+}
+
+function fetchDataPromise() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("Promise resolved");
+        }, 1000);
+    });
+}
+
+async function getData() {
+    let data = await fetchDataPromise();
+    return data;
+}
+
+let output = "Starting async operations...\n";
+
+fetchData((data) => {
+    output += `Callback: ${data}\n`;
+    document.getElementById('output').textContent = output;
+});
+
+fetchDataPromise().then(data => {
+    output += `Promise: ${data}\n`;
+    document.getElementById('output').textContent = output;
+});
+
+getData().then(data => {
+    output += `Async/Await: ${data}`;
+    document.getElementById('output').textContent = output;
+});
+</code></pre>
+  <div class="output" id="output"></div>
+  <a href="index.html" class="btn">Back to Index</a>
+  <div class="explanation">
+    <h2>Explanation</h2>
+    <ul>
+      <li><b>fetchData(callback)</b> — Simulates an async operation using a callback.</li>
+      <li><b>fetchDataPromise()</b> — Returns a Promise that resolves after 1 second.</li>
+      <li><b>getData()</b> — Uses async/await to wait for the Promise to resolve.</li>
+      <li>Shows how to handle async code with callbacks, Promises, and async/await.</li>
+      <li>The <b>output</b> variable collects the results and is displayed in the green output box above.</li>
+    </ul>
+  </div>
+  <script>
+    function fetchData(callback) {
+      setTimeout(() => {
+        callback("Data received");
+      }, 1000);
+    }
+    function fetchDataPromise() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve("Promise resolved");
+        }, 1000);
+      });
+    }
+    async function getData() {
+      let data = await fetchDataPromise();
+      return data;
+    }
+    let output = "Starting async operations...\n";
+    fetchData((data) => {
+      output += `Callback: ${data}\n`;
+      document.getElementById('output').textContent = output;
+    });
+    fetchDataPromise().then(data => {
+      output += `Promise: ${data}\n`;
+      document.getElementById('output').textContent = output;
+    });
+    getData().then(data => {
+      output += `Async/Await: ${data}`;
+      document.getElementById('output').textContent = output;
+    });
+  </script>
+</body>
+</html> 

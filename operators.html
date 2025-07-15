@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Operators - JavaScript Mastery</title>
+  <style>
+    body { background: #121212; color: #fff; font-family: sans-serif; padding: 20px; }
+    pre { background: #1e1e1e; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+    .output { background: #222; color: #b9f6ca; padding: 12px; border-radius: 5px; min-height: 40px; margin-bottom: 20px; white-space: pre-line; }
+    .btn { display: inline-block; background: #4caf50; color: white; font-size: 1.1em; padding: 10px 24px; border-radius: 6px; text-decoration: none; margin-top: 20px; }
+    .btn:hover { background: #388e3c; }
+    .explanation { background: #263238; color: #ffe082; border-radius: 6px; padding: 18px; margin-top: 30px; font-size: 1.08em; line-height: 1.7; }
+    .explanation h2 { color: #ffd600; margin-top: 0; }
+  </style>
+</head>
+<body>
+  <h1>Operators</h1>
+  <pre><code>let a = 10, b = 5;
+let output = `Arithmetic:\nAddition: ${a + b}\nSubtraction: ${a - b}\nMultiplication: ${a * b}\nDivision: ${a / b}\nExponent: ${a ** b}\nModulus: ${a % b}\n\nComparison:\nEqual (==): ${a == '10'}\nStrict Equal (===): ${a === '10'}\nNot Equal (!=): ${a != '10'}\nStrict Not Equal (!==): ${a !== '10'}\nGreater Than: ${a > b}\nLess Than: ${a < b}\n\nLogical:\nAND: ${a > 5 && b < 10}\nOR: ${a > 5 || b > 10}\nNOT: ${!(a > 5)}\n\nTernary:\n${a > b ? 'a is greater' : 'b is greater'}`;
+
+document.getElementById('output').textContent = output;</code></pre>
+  <div class="output" id="output"></div>
+  <a href="index.html" class="btn">Back to Index</a>
+  <div class="explanation">
+    <h2>Explanation</h2>
+    <ul>
+      <li><b>let a = 10, b = 5;</b> — Declares two variables <b>a</b> and <b>b</b> with values 10 and 5.</li>
+      <li><b>Arithmetic</b> — Shows results of addition, subtraction, multiplication, division, exponentiation, and modulus.</li>
+      <li><b>Comparison</b> — Shows equality, strict equality, inequality, strict inequality, greater than, and less than comparisons.</li>
+      <li><b>Logical</b> — Shows logical AND, OR, and NOT operations.</li>
+      <li><b>Ternary</b> — Uses a ternary operator to choose between two strings based on a condition.</li>
+      <li>The <b>output</b> variable uses template literals to show all results in a formatted string.</li>
+      <li>The result is displayed in the green output box above.</li>
+    </ul>
+  </div>
+  <script>
+    let a = 10, b = 5;
+    let output = `Arithmetic:\nAddition: ${a + b}\nSubtraction: ${a - b}\nMultiplication: ${a * b}\nDivision: ${a / b}\nExponent: ${a ** b}\nModulus: ${a % b}\n\nComparison:\nEqual (==): ${a == '10'}\nStrict Equal (===): ${a === '10'}\nNot Equal (!=): ${a != '10'}\nStrict Not Equal (!==): ${a !== '10'}\nGreater Than: ${a > b}\nLess Than: ${a < b}\n\nLogical:\nAND: ${a > 5 && b < 10}\nOR: ${a > 5 || b > 10}\nNOT: ${!(a > 5)}\n\nTernary:\n${a > b ? 'a is greater' : 'b is greater'}`;
+    document.getElementById('output').textContent = output;
+  </script>
+</body>
+</html> 

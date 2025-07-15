@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Print Methods - JavaScript Mastery</title>
+  <style>
+    body { background: #121212; color: #fff; font-family: sans-serif; padding: 20px; }
+    pre { background: #1e1e1e; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+    .output { background: #222; color: #b9f6ca; padding: 12px; border-radius: 5px; min-height: 40px; margin-bottom: 20px; white-space: pre-line; }
+    .btn { display: inline-block; background: #4caf50; color: white; font-size: 1.1em; padding: 10px 24px; border-radius: 6px; text-decoration: none; margin-top: 20px; }
+    .btn:hover { background: #388e3c; }
+  </style>
+</head>
+<body>
+  <h1>Print Methods</h1>
+  <pre><code>console.log("This is console.log output"); // Developer console
+document.getElementById("output").textContent += "This is written to the page using textContent\n";
+document.write("This is written using document.write (not recommended)");</code></pre>
+  <div class="output" id="output"></div>
+  <a href="index.html" class="btn">Back to Index</a>
+  <script>
+    document.getElementById("output").textContent = "";
+    console.log("This is console.log output"); // Developer console
+    document.getElementById("output").textContent += "This is written to the page using textContent\n";
+    // document.write is not recommended, so we show it as a string instead:
+    document.getElementById("output").textContent += "This is written using document.write (not recommended)";
+  </script>
+</body>
+</html> 

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Modern JS Features - JavaScript Mastery</title>
+  <style>
+    body { background: #121212; color: #fff; font-family: sans-serif; padding: 20px; }
+    pre { background: #1e1e1e; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+    .output { background: #222; color: #b9f6ca; padding: 12px; border-radius: 5px; min-height: 40px; margin-bottom: 20px; white-space: pre-line; }
+    .btn { display: inline-block; background: #4caf50; color: white; font-size: 1.1em; padding: 10px 24px; border-radius: 6px; text-decoration: none; margin-top: 20px; }
+    .btn:hover { background: #388e3c; }
+    .explanation { background: #263238; color: #ffe082; border-radius: 6px; padding: 18px; margin-top: 30px; font-size: 1.08em; line-height: 1.7; }
+    .explanation h2 { color: #ffd600; margin-top: 0; }
+  </style>
+</head>
+<body>
+  <h1>Modern JS Features</h1>
+  <pre><code>let [x, y] = [1, 2];
+let {name, age} = {name: "Alice", age: 25};
+
+let arr1 = [1, 2];
+let arr2 = [...arr1, 3, 4];
+
+let text = `Hello ${name}, you are ${age} years old`;
+
+let user = { profile: { name: "Bob" } };
+let city = user?.profile?.address?.city;
+
+let setting = null;
+let defaultValue = setting ?? "default";
+
+let output = `Destructuring: x=${x}, y=${y}, name=${name}
+Spread: ${arr2}
+Template: ${text}
+Optional Chaining: ${city}
+Nullish Coalescing: ${defaultValue}`;
+
+document.getElementById('output').textContent = output;</code></pre>
+  <div class="output" id="output"></div>
+  <a href="index.html" class="btn">Back to Index</a>
+  <div class="explanation">
+    <h2>Explanation</h2>
+    <ul>
+      <li><b>Destructuring</b> — Extracts values from arrays/objects into variables.</li>
+      <li><b>Spread operator</b> — Expands arrays into individual elements.</li>
+      <li><b>Template literals</b> — Allows embedded expressions in strings using backticks.</li>
+      <li><b>Optional chaining</b> — Safely accesses nested properties without errors if something is undefined.</li>
+      <li><b>Nullish coalescing</b> — Returns the right value if the left is null or undefined.</li>
+      <li>The <b>output</b> variable collects the results and is displayed in the green output box above.</li>
+    </ul>
+  </div>
+  <script>
+    let [x, y] = [1, 2];
+    let {name, age} = {name: "Alice", age: 25};
+    let arr1 = [1, 2];
+    let arr2 = [...arr1, 3, 4];
+    let text = `Hello ${name}, you are ${age} years old`;
+    let user = { profile: { name: "Bob" } };
+    let city = user?.profile?.address?.city;
+    let setting = null;
+    let defaultValue = setting ?? "default";
+    let output = `Destructuring: x=${x}, y=${y}, name=${name}
+Spread: ${arr2}
+Template: ${text}
+Optional Chaining: ${city}
+Nullish Coalescing: ${defaultValue}`;
+    document.getElementById('output').textContent = output;
+  </script>
+</body>
+</html> 

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Arrays - JavaScript Mastery</title>
+  <style>
+    body { background: #121212; color: #fff; font-family: sans-serif; padding: 20px; }
+    pre { background: #1e1e1e; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+    .output { background: #222; color: #b9f6ca; padding: 12px; border-radius: 5px; min-height: 40px; margin-bottom: 20px; white-space: pre-line; }
+    .btn { display: inline-block; background: #4caf50; color: white; font-size: 1.1em; padding: 10px 24px; border-radius: 6px; text-decoration: none; margin-top: 20px; }
+    .btn:hover { background: #388e3c; }
+    .explanation { background: #263238; color: #ffe082; border-radius: 6px; padding: 18px; margin-top: 30px; font-size: 1.08em; line-height: 1.7; }
+    .explanation h2 { color: #ffd600; margin-top: 0; }
+  </style>
+</head>
+<body>
+  <h1>Arrays</h1>
+  <pre><code>let numbers = [1, 2, 3];
+numbers.push(4);
+numbers.unshift(0);
+let last = numbers.pop();
+let first = numbers.shift();
+
+let doubled = numbers.map(n => n * 2);
+let evens = numbers.filter(n => n % 2 === 0);
+let sum = numbers.reduce((total, n) => total + n, 0);
+
+let output = `Original: ${numbers}
+After operations: ${numbers}
+Doubled: ${doubled}
+Evens: ${evens}
+Sum: ${sum}`;
+
+document.getElementById('output').textContent = output;</code></pre>
+  <div class="output" id="output"></div>
+  <a href="index.html" class="btn">Back to Index</a>
+  <div class="explanation">
+    <h2>Explanation</h2>
+    <ul>
+      <li><b>let numbers = [1, 2, 3];</b> — Creates an array of numbers.</li>
+      <li><b>push(4)</b> — Adds 4 to the end of the array.</li>
+      <li><b>unshift(0)</b> — Adds 0 to the beginning of the array.</li>
+      <li><b>pop()</b> — Removes the last element (4) from the array.</li>
+      <li><b>shift()</b> — Removes the first element (0) from the array.</li>
+      <li><b>map(n => n * 2)</b> — Creates a new array with each value doubled.</li>
+      <li><b>filter(n => n % 2 === 0)</b> — Creates a new array with only even numbers.</li>
+      <li><b>reduce((total, n) => total + n, 0)</b> — Sums all numbers in the array.</li>
+      <li>The <b>output</b> variable collects the results and is displayed in the green output box above.</li>
+    </ul>
+  </div>
+  <script>
+    let numbers = [1, 2, 3];
+    numbers.push(4);
+    numbers.unshift(0);
+    let last = numbers.pop();
+    let first = numbers.shift();
+    let doubled = numbers.map(n => n * 2);
+    let evens = numbers.filter(n => n % 2 === 0);
+    let sum = numbers.reduce((total, n) => total + n, 0);
+    let output = `Original: ${numbers}
+After operations: ${numbers}
+Doubled: ${doubled}
+Evens: ${evens}
+Sum: ${sum}`;
+    document.getElementById('output').textContent = output;
+  </script>
+</body>
+</html> 
